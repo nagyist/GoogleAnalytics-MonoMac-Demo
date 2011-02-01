@@ -38,13 +38,22 @@ namespace AnalyticsVisualization
 		public new Account_List Window {
 			get { return (Account_List)base.Window; }
 		}
-
-		// Shared initialization code
-		private void Initialize ()
+		
+		public override void AwakeFromNib ()
 		{
+			if (_account != null)
+				_accountList.DataSource = new AccountListDataSource(_account.GetEntryNames());
 		}
+		
+		// Shared initialization code
+		private void Initialize()
+		{
+			
+		}		
 
 		readonly Account _account;
 	}
+
+	
 }
 

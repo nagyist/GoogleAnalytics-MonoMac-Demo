@@ -19,5 +19,20 @@ namespace AnalyticsVisualization {
 	// Should subclass MonoMac.AppKit.NSWindowController
 	[MonoMac.Foundation.Register("Account_ListController")]
 	public partial class Account_ListController {
+		
+		private global::MonoMac.AppKit.NSTableView __mt__accountList;
+		
+		#pragma warning disable 0169
+		[MonoMac.Foundation.Connect("_accountList")]
+		private global::MonoMac.AppKit.NSTableView _accountList {
+			get {
+				this.__mt__accountList = ((global::MonoMac.AppKit.NSTableView)(this.GetNativeField("_accountList")));
+				return this.__mt__accountList;
+			}
+			set {
+				this.__mt__accountList = value;
+				this.SetNativeField("_accountList", value);
+			}
+		}
 	}
 }

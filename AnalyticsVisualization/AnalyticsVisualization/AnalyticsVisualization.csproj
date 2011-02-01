@@ -66,6 +66,7 @@
     <Compile Include="Account_List.xib.designer.cs">
       <DependentUpon>Account_List.xib</DependentUpon>
     </Compile>
+    <Compile Include="AccountListDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
