@@ -1,7 +1,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using DataLayer;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
@@ -36,8 +38,23 @@ namespace AnalyticsVisualization
 		
 		partial void login(NSObject sender)
 		{
-			new Account_ListController(_userNameField.StringValue, _passwordField.StringValue).ShowWindow(sender);
-			Close();
+			ReadOnlyCollection<DataFeed> feeds;
+			try
+			{
+				Account account = new Account(_userNameField.StringValue, _passwordField.StringValue);
+				feeds = account.GetEntryNames();
+			}
+			catch (InvalidOperationException)
+			{
+				NSAlert.WithMessage("Unable to log in", "OK", "", "", "").BeginSheet(this.Window);
+				feeds = null;
+			}
+					
+			if (feeds != null)
+			{
+				new Account_ListController(feeds).ShowWindow(sender);
+				Close();
+			}
 		}
 		
 		// Shared initialization code

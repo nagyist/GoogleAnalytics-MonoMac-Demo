@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Google.GData.Analytics;
 using Google.GData.Client;
@@ -24,10 +25,17 @@ namespace DataLayer
 			_service.setUserCredentials(username, password);
 		}
 
-		public IEnumerable<string> GetEntryNames()
+		public ReadOnlyCollection<DataFeed> GetEntryNames()
 		{
 			var feedQuery = new AccountQuery("http://www.google.com/analytics/feeds/accounts/default");
-			return _service.Query(feedQuery).Entries.Select(entry => entry.Title.Text).ToList().AsReadOnly();
+			try
+			{
+				return _service.Query(feedQuery).Entries.Cast<AccountEntry>().Select(entry => new DataFeed(this, entry.Title.Text, entry.ProfileId.Value)).ToList().AsReadOnly();
+			}
+			catch (GDataRequestException x)
+			{
+				throw new InvalidOperationException("Unable to log in.", x);
+			}
 		}
 
 		readonly AnalyticsService _service;

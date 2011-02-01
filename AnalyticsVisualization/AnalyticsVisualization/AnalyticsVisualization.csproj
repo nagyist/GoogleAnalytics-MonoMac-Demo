@@ -67,11 +67,21 @@
       <DependentUpon>Account_List.xib</DependentUpon>
     </Compile>
     <Compile Include="AccountListDataSource.cs" />
+    <Compile Include="VisualizationWindow.cs">
+      <DependentUpon>VisualizationWindow.xib</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationWindowController.cs">
+      <DependentUpon>VisualizationWindow.xib</DependentUpon>
+    </Compile>
+    <Compile Include="VisualizationWindow.xib.designer.cs">
+      <DependentUpon>VisualizationWindow.xib</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
     <Page Include="MainMenu.xib" />
     <Page Include="Account_List.xib" />
+    <Page Include="VisualizationWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

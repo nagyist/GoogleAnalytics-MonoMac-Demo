@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using DataLayer;
 using MonoMac.AppKit;
 using MonoMac.Foundation;
 
@@ -10,7 +11,7 @@ namespace AnalyticsVisualization
 {
 	internal sealed class AccountListDataSource : NSTableViewDataSource
 	{
-		public AccountListDataSource(IEnumerable<string> accountNames)
+		public AccountListDataSource(IEnumerable<DataFeed> accountNames)
 		{
 			if (accountNames == null)
 				throw new ArgumentNullException("accountNames");
@@ -24,9 +25,9 @@ namespace AnalyticsVisualization
 		
 		public override NSObject GetObjectValue (NSTableView tableView, NSTableColumn tableColumn, int row)
 		{
-			return new NSString(_accountNames[row]);
+			return new NSString(_accountNames[row].Title);
 		}
 
-		ReadOnlyCollection<string> _accountNames;
+		ReadOnlyCollection<DataFeed> _accountNames;
 	}
 }

@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using DataLayer;
 using MonoMac.Foundation;
@@ -26,9 +27,9 @@ namespace AnalyticsVisualization
 		}
 
 		// Call to load from the XIB/NIB file
-		public Account_ListController(string username, string password) : base("Account_List")
+		public Account_ListController(ReadOnlyCollection<DataFeed> feeds) : base("Account_List")
 		{
-			_account = new Account(username, password);
+			_feeds = feeds;
 			Initialize ();
 		}
 
@@ -41,8 +42,17 @@ namespace AnalyticsVisualization
 		
 		public override void AwakeFromNib ()
 		{
-			if (_account != null)
-				_accountList.DataSource = new AccountListDataSource(_account.GetEntryNames());
+			_accountList.DataSource = new AccountListDataSource(_feeds);
+			_accountList.DoubleClick += Handle_accountListDoubleClick;
+		}
+
+		private void Handle_accountListDoubleClick (object sender, EventArgs e)
+		{
+			int selectedIndex = _accountList.SelectedRow;
+			if (selectedIndex >= 0 && selectedIndex < _feeds.Count)
+			{
+				new VisualizationWindowController(_feeds[selectedIndex]).ShowWindow(this);
+			}
 		}
 		
 		// Shared initialization code
@@ -51,9 +61,7 @@ namespace AnalyticsVisualization
 			
 		}		
 
-		readonly Account _account;
+		readonly ReadOnlyCollection<DataFeed> _feeds;
 	}
-
-	
 }
 
