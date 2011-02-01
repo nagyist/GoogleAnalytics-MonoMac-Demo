@@ -9,37 +9,40 @@ namespace AnalyticsVisualization
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
-		#region Constructors
-
 		// Called when created from unmanaged code
-		public MainWindowController (IntPtr handle) : base(handle)
+		public MainWindowController(IntPtr handle) : base(handle)
 		{
 			Initialize ();
 		}
 
 		// Called when created directly from a XIB file
 		[Export("initWithCoder:")]
-		public MainWindowController (NSCoder coder) : base(coder)
+		public MainWindowController(NSCoder coder) : base(coder)
 		{
 			Initialize ();
 		}
 
 		// Call to load from the XIB/NIB file
-		public MainWindowController () : base("MainWindow")
+		public MainWindowController() : base("MainWindow")
 		{
 			Initialize ();
 		}
 
-		// Shared initialization code
-		void Initialize ()
-		{
-		}
-
-		#endregion
-
 		//strongly typed window accessor
-		public new MainWindow Window {
-			get { return (MainWindow)base.Window; }
+		public new MainWindow Window
+		{
+			get { return (MainWindow) base.Window; }
+		}
+		
+		partial void login(NSObject sender)
+		{
+			new Account_ListController(_userNameField.StringValue, _passwordField.StringValue).ShowWindow(sender);
+			Close();
+		}
+		
+		// Shared initialization code
+		private void Initialize()
+		{
 		}
 	}
 }

@@ -11,8 +11,13 @@
 namespace AnalyticsVisualization {
 	
 	
-	// Should subclass MonoMac.AppKit.NSResponder
-	[MonoMac.Foundation.Register("AppDelegate")]
-	public partial class AppDelegate {
+	// Should subclass MonoMac.AppKit.NSWindow
+	[MonoMac.Foundation.Register("Account_List")]
+	public partial class Account_List {
+	}
+	
+	// Should subclass MonoMac.AppKit.NSWindowController
+	[MonoMac.Foundation.Register("Account_ListController")]
+	public partial class Account_ListController {
 	}
 }

@@ -31,9 +31,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Google.GData.Analytics, Version=1.7.0.0, Culture=neutral, PublicKeyToken=9e229226d7996434">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libgoogle-data-mono-1.7.0.1\Google.GData.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client, Version=1.7.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libgoogle-data-mono-1.7.0.1\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Extensions, Version=1.7.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libgoogle-data-mono-1.7.0.1\Google.GData.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Account.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
