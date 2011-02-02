@@ -31,9 +31,14 @@ namespace AnalyticsVisualization
 			_feed = feed;
 			Initialize ();
 		}
-
+		
+		public override void AwakeFromNib ()
+		{
+			_visualizationTable.DataSource = new VisualizationDataSource(_feed.DoSomething());
+		}
+		
 		// Shared initialization code
-		void Initialize ()
+		private void Initialize ()
 		{
 		}
 

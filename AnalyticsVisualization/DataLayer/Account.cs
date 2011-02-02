@@ -30,7 +30,7 @@ namespace DataLayer
 			var feedQuery = new AccountQuery("http://www.google.com/analytics/feeds/accounts/default");
 			try
 			{
-				return _service.Query(feedQuery).Entries.Cast<AccountEntry>().Select(entry => new DataFeed(this, entry.Title.Text, entry.ProfileId.Value)).ToList().AsReadOnly();
+				return _service.Query(feedQuery).Entries.Cast<AccountEntry>().Select(entry => new DataFeed(_service, entry.Title.Text, entry.ProfileId.Value)).ToList().AsReadOnly();
 			}
 			catch (GDataRequestException x)
 			{
