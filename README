@@ -1,0 +1,22 @@
+This is a very simple demo app that I built for a presentation on using .net for creating Mac apps. It allows you to log in to a Google Analytics account, select a data feed, and see how many visitors in each region use Mac or Windows.
+
+Prerequisites
+
+- Install XCode
+- Download and install Mono 2.8.2 (or greater) from http://www.go-mono.com/mono-downloads/download.html
+- Download MonoDevelop from http://monodevelop.com/Download
+- Install the MonoMac add-in for MonoDevelop
+ - Open MonoDevelop and go to Tools -> Add-in Manager
+ - Click the "Repositories…" button
+ - Click the "Add" button
+ - Enter http://addins.monodevelop.com/Alpha/Mac/2.4 as the url for the new repository, and click OK.
+ - Close the repository window, and click the "Install Add-ins…" button in the Add-in Manager
+ - Expand the "Mac Development" item and select the latest version of the MonoMac development package
+ - Click the "Forward" button and continue with installation
+- Build the Google Data API wrappers
+ - In Terminal, navigate to libgoogle-data-mono-1.7.0.1
+ - Run 'make'
+
+Building and Running
+
+Once you've done all the above steps, you should be able to open AnalyticsVisualization/AnalyticsVisualization.sln in MonoDevelop and build/run the app from there.
