@@ -28,6 +28,6 @@ namespace AnalyticsVisualization
 			return new NSString(_accountNames[row].Title);
 		}
 
-		ReadOnlyCollection<DataFeed> _accountNames;
+		readonly ReadOnlyCollection<DataFeed> _accountNames;
 	}
 }

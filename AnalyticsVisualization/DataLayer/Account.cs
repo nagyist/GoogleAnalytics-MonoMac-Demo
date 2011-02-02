@@ -1,6 +1,5 @@
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Google.GData.Analytics;
@@ -25,7 +24,7 @@ namespace DataLayer
 			_service.setUserCredentials(username, password);
 		}
 
-		public ReadOnlyCollection<DataFeed> GetEntryNames()
+		public ReadOnlyCollection<DataFeed> GetDataFeeds()
 		{
 			var feedQuery = new AccountQuery("http://www.google.com/analytics/feeds/accounts/default");
 			try

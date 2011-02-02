@@ -1,55 +1,42 @@
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DataLayer;
-using MonoMac.Foundation;
 using MonoMac.AppKit;
+using MonoMac.Foundation;
 
 namespace AnalyticsVisualization
 {
 	public partial class VisualizationWindowController : MonoMac.AppKit.NSWindowController
 	{
-		#region Constructors
-
-		// Called when created from unmanaged code
-		public VisualizationWindowController (IntPtr handle) : base(handle)
-		{
-			Initialize ();
-		}
-
-		// Called when created directly from a XIB file
-		[Export("initWithCoder:")]
-		public VisualizationWindowController (NSCoder coder) : base(coder)
-		{
-			Initialize ();
-		}
-
-		// Call to load from the XIB/NIB file
-		public VisualizationWindowController (DataFeed feed) : base("VisualizationWindow")
+		public VisualizationWindowController(DataFeed feed)
+			: base("VisualizationWindow")
 		{
 			_feed = feed;
-			Initialize ();
 		}
+		
+		public VisualizationWindowController(IntPtr handle)
+			: base(handle)
+		{
+		}
+
+		[Export("initWithCoder:")]
+		public VisualizationWindowController(NSCoder coder)
+			: base(coder)
+		{
+		}
+
 		
 		public override void AwakeFromNib ()
 		{
-			_visualizationTable.DataSource = new VisualizationDataSource(_feed.DoSomething());
+			if (_feed != null)
+				_visualizationTable.DataSource = new VisualizationDataSource(_feed.GetRegionInfo());
 		}
-		
-		// Shared initialization code
-		private void Initialize ()
+
+		public new VisualizationWindow Window
 		{
-		}
-
-		#endregion
-
-		//strongly typed window accessor
-		public new VisualizationWindow Window {
-			get { return (VisualizationWindow)base.Window; }
+			get { return (VisualizationWindow) base.Window; }
 		}
 
 		readonly DataFeed _feed;
 	}
 }
-

@@ -1,8 +1,6 @@
-using System;
-using System.Drawing;
-using MonoMac.Foundation;
+
 using MonoMac.AppKit;
-using MonoMac.ObjCRuntime;
+using MonoMac.Foundation;
 
 namespace AnalyticsVisualization
 {
@@ -10,11 +8,11 @@ namespace AnalyticsVisualization
 	{
 		MainWindowController mainWindowController;
 
-		public AppDelegate ()
+		public AppDelegate()
 		{
 		}
 
-		public override void FinishedLaunching (NSObject notification)
+		public override void FinishedLaunching(NSObject notification)
 		{
 			mainWindowController = new MainWindowController ();
 			mainWindowController.Window.MakeKeyAndOrderFront (this);

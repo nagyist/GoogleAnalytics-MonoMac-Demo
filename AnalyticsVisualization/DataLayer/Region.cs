@@ -1,4 +1,4 @@
-using System;
+
 namespace DataLayer
 {
 	public class Region
@@ -16,4 +16,3 @@ namespace DataLayer
 		readonly string _name;
 	}
 }
-
